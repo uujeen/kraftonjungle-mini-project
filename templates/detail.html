@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        font-family: "Open Sans", sans-serif;
+        width: 900px;
+        margin: auto;
+      }
+      #navbar_attr {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      #detail-content-wrap {
+        width: 600px;
+      }
+      #detail-comment-wrap {
+        width: 600px;
+      }
+      #detail-title {
+        font-size: 40px;
+        font-weight: bold;
+        margin: 30px 0px;
+        text-align: center;
+      }
+
+      #comment-balloon {
+        background-color: rgba(0, 0, 0, 0.09);
+        border-radius: 4px;
+        font-size: 20px;
+      }
+      #detail-page-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      #comments-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+      #comments-wrap > * {
+        margin-top: 10px;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    {% include "navbar2.html" %}
+    <div id="detail-title">상세 내용</div>
+    <div id="detail-page-wrap">
+      <div id="detail-content-wrap">
+        <div class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2">
+          <div class="form-group">
+            <h5>제목</h5>
+            <input
+              name="list_title"
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              value="{{list_one['list_title']}}"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <h5>날짜</h5>
+            <input
+              name="list_date"
+              type="text"
+              class="form-control"
+              id="exampleFormControlSelect1"
+              value="{{list_one['list_date']}}"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <h5>상세내용</h5>
+            <input
+              name="list_content"
+              type="text"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              value="{{list_one['list_content']}}"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <h5>참가 인원</h5>
+            <input
+              name="list_attendent"
+              type="text"
+              class="form-control"
+              id="exampleFormControlSelect1"
+              value="{{list_one['list_attendent']}}"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <h5>정원</h5>
+            <input
+              name="list_max"
+              type="text"
+              class="form-control"
+              id="exampleFormControlSelect1"
+              value="{{list_one['list_max']}}"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <h5>작성자</h5>
+            <input
+              name="list_writer"
+              type="text"
+              class="form-control"
+              id="exampleFormControlSelect1"
+              value="{{list_one['list_writer']}}"
+              readonly
+            />
+          </div>
+          <a href="/detail/attendent/{{list_one['list_num']}}"
+            ><button type="button" class="btn btn-primary">참석</button></a
+          >
+        </div>
+      </div>
+      <div id="detail-comment-wrap">
+        <div
+          id="comment-wrap"
+          class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2"
+        >
+          <div
+            id="comments-wrap"
+            class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2"
+          >
+            {% include "comment.html" %}
+          </div>
+          <form
+            class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2"
+            action="/new_comment/{{list_one['list_num']}}"
+            method="POST"
+          >
+            <fieldset class="py-2 px-2">
+              <div class="form-group">
+                <h5>댓글 작성란</h5>
+                <input
+                  name="comment_content"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  placeholder="댓글을 입력해주세요"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">작성</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<nav id="navbar-attr" class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">{{user_name}}님, 안녕하세요</span>
+  <div id="nav-btn-box">
+    <a href="{{url_for('pasttable')}}"
+      ><button type="button" id="btn-open-mypage" class="btn btn-secondary">
+        지난 글 보기
+      </button></a
+    >
+    <button
+      type="button"
+      onclick="openClose()"
+      id="btn-post-box"
+      class="btn btn-success"
+    >
+      새글등록
+    </button>
+    <a href="{{url_for('mypage')}}"
+      ><button type="button" id="btn-open-mypage" class="btn btn-primary">
+        마이페이지
+      </button></a
+    >
+    <a href="{{url_for('logout')}}"
+      ><button type="button" id="btn-open-mypage" class="btn btn-danger">
+        로그아웃
+      </button></a
+    >
+  </div>
+</nav>

@@ -1,0 +1,6 @@
+{% for comment in comment_list %}
+
+<span id="comment-balloon"
+  >{{comment['comment_user_name']}} : {{comment['comment_content']}}</span
+>
+{% endfor %}

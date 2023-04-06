@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function openClose() {
+        // alert("클릭")
+        if ($("#post-box").css("display") == "block") {
+          // post-box를 가리고
+          $("#post-box").hide();
+          // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
+          $("#btn-post-box").text("새글등록");
+        } else {
+          // 아니면(눈에 보이지 않으면) post-box를 펴라
+          $("#post-box").show();
+          // 다시 버튼을 클릭하면, 박스 닫기를 할 수 있게 텍스트 바꿔두기
+          $("#btn-post-box").text("새글등록 닫기");
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        font-family: "Open Sans", sans-serif;
+        width: 900px;
+        margin: auto;
+      }
+
+      #navbar_attr {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      #post-box-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      #post-box {
+        width: 600px;
+      }
+
+      th,
+      td {
+        text-align: center;
+      }
+    </style>
+    <title>Grouping</title>
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2">
+      <div id="post-box-wrap">
+        <div id="post-box" style="display: none">
+          <form
+            class="p-5 m-auto border border-gray-300 rounded-md w-1/2 h-1/2"
+            action="/new_post"
+            method="POST"
+          >
+            <div class="form-group">
+              <label type="text">제목</label>
+              <input
+                name="list_title"
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="제목을 입력해주세요"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label type="text">일시</label>
+              <input
+                name="list_date"
+                type="datetime-local"
+                class="form-control"
+                id="exampleFormControlSelect1"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label type="text">상세내용</label>
+              <textarea
+                name="list_content"
+                type="text"
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                placeholder="상세내용을 입력해주세요"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">정원</label>
+              <input
+                name="list_max"
+                min="1"
+                max="71"
+                type="number"
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                placeholder="정원을 선택해주세요"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">등록</button>
+          </form>
+        </div>
+      </div>
+      {% include "maintable.html" %}
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
